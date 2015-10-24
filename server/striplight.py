@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
 from flask import Flask
-import datetime
+from datetime import datetime
 
 
 app = Flask(__name__)
+app.debug = True
+
 
 
 @app.route('/')
@@ -14,8 +16,8 @@ def home():
 
 @app.route('/getTime')
 def getTime():
-    time = datetime.datetime.now().time()
-    return time
+    actual_time = datetime.now().time()
+    return str(actual_time)
 
 
 if __name__ == '__main__':
