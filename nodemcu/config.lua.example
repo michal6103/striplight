@@ -1,0 +1,10 @@
+CONFIG = {
+	-- Wi-Fi settings
+	SSID = "",
+	PASSWORD = "",
+
+	-- LED Strip settings
+    PWM_PIN1 = 1,
+    PWM_PIN2 = 2,
+    PWM_PIN3 = 3
+}
