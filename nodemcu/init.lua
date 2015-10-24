@@ -1,43 +1,50 @@
 require "strip"
 require "config"
+require "color"
 
+STA_GOTIP = 5
+TIMER_NETWORK = 0   -- Timer used for network event
+TIMER_COLOR = 1     -- Timer used for color change
+
+function setColorCallback()
+end
+
+function checkNetCallback()
+    if wifi.sta.status() == STA_GOTIP  then
+        print("Got IP: " .. wifi.sta.getip())
+        tmr.stop(TIMER_NETWORK)
+    end
+end
 
 function initWifi()
-	print("Connecting to Wi-Fi: " .. CONFIG.SSID)
+    print("Connecting to Wi-Fi: " .. CONFIG.SSID)
     wifi.setmode(wifi.STATION)
-    wifi.sta.config(CONFIG.SSID,CONFIG.PASSWORD)
-    print(wifi.sta.getip())
+    wifi.sta.config(CONFIG.SSID,CONFIG.PASSWORD)    
 end
 
-
-function hsvToRgb(h, s, v, a)
-  local r, g, b
-
-  local i = Math.floor(h * 6);
-  local f = h * 6 - i;
-  local p = v * (1 - s);
-  local q = v * (1 - f * s);
-  local t = v * (1 - (1 - f) * s);
-
-  i = i % 6
-
-  if i == 0 then r, g, b = v, t, p
-  elseif i == 1 then r, g, b = q, v, p
-  elseif i == 2 then r, g, b = p, v, t
-  elseif i == 3 then r, g, b = p, q, v
-  elseif i == 4 then r, g, b = t, p, v
-  elseif i == 5 then r, g, b = v, p, q
-  end
-
-  return r * 255, g * 255, b * 255, a * 255
+function rotateColorsCallback()
+    if hue == nil then
+        hue = 0
+    end
+    local r, g, b
+    r, g, b = Color.hsvToRgb(hue, 255, 255)
+    print("HSV",hue,255,255)
+    print("RGB",r,g,b)
+    strip:setRGB(r, g, b)
+    hue = hue + 1
+    if hue >= 255 then
+        hue = 0
+    end
 end
-
 
 
 initWifi()
+tmr.alarm(TIMER_NETWORK, 1000, 1, checkNetCallback)
+
 strip = Strip;
 strip:start()
-strip:setRGB(10,10,10)
-print(strip:getRGB())
+tmr.alarm(TIMER_COLOR, 1000, 1, rotateColorsCallback)
 
+
+print(strip:getRGB())
 
