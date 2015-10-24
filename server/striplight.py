@@ -8,7 +8,6 @@ app = Flask(__name__)
 app.debug = True
 
 
-
 @app.route('/')
 def home():
     return 'Striplight'
@@ -16,6 +15,8 @@ def home():
 
 @app.route('/getTime')
 def getTime():
+    """Return string with actual time.
+    """
     actual_time = datetime.now().time()
     return str(actual_time)
 
