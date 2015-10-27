@@ -1,6 +1,5 @@
-require "math"
 Color = {}
-
+-- TODO change input and outputs to 10 bits
 function Color.hsvToRgb(h, s, v)
   local r, g, b
 
@@ -22,4 +21,5 @@ function Color.hsvToRgb(h, s, v)
 
   return r, g, b
 end
+
 
