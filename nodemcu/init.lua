@@ -25,10 +25,10 @@ function getTimeCallback()
                     tmr.alarm(TIMER_TIME, 600000, 1, getTimeCallback)
                 end
             end)
-        conn:connect(5000,"188.226.243.203")
+        conn:connect(5000,CONFIG.TIME_HOST)
         print("Getting time")
-        conn:send("GET /getTime HTTP/1.1\r\nHost: 188.226.243.203\r\n"
-        .."Connection: keep-alive\r\nAccept: */*\r\n\r\n")
+        conn:send("GET /getTime HTTP/1.1\r\nHost: " .. CONFIG.TIME_HOST
+		.. "\r\n" .."Connection: keep-alive\r\nAccept: */*\r\n\r\n")
     else
         -- start checking network every second
         tmr.alarm(TIMER_NETWORK, 1000, 1, checkNetCallback)
@@ -49,7 +49,7 @@ end
 function initWifi()
     print("Connecting to Wi-Fi: " .. CONFIG.SSID)
     wifi.setmode(wifi.STATION)
-    wifi.sta.config(CONFIG.SSID,CONFIG.PASSWORD)    
+    wifi.sta.config(CONFIG.SSID,CONFIG.PASSWORD)
 end
 
 function rotateColorsCallback()

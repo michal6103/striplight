@@ -3,6 +3,9 @@ CONFIG = {
 	SSID = "",
 	PASSWORD = "",
 
+	-- GetTime server
+	TIME_HOST = "127.0.0.1"
+
 	-- LED Strip settings
     PWM_PIN1 = 1,
     PWM_PIN2 = 2,
