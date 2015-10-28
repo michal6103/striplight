@@ -30,15 +30,15 @@ function Strip:setRGB(r, g, b)
     self.g = g
     self.b = b
 
-    pwm.setduty(self.r_pin,r)
-    pwm.setduty(self.g_pin,g)
-    pwm.setduty(self.b_pin,b)
+    pwm.setduty(self.r_pin,r * 4)
+    pwm.setduty(self.g_pin,g * 4)
+    pwm.setduty(self.b_pin,b * 4)
 end
 
 function Strip:getRGB()
-    local r = pwm.getduty(self.r_pin)
-    local g = pwm.getduty(self.g_pin)
-    local b = pwm.getduty(self.b_pin)
+    local r = pwm.getduty(self.r_pin / 4)
+    local g = pwm.getduty(self.g_pin / 4)
+    local b = pwm.getduty(self.b_pin / 4)
     return r, g, b
 end
 
