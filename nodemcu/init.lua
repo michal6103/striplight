@@ -57,14 +57,42 @@ function rotateColorsCallback()
         hue = 0
     end
     local r, g, b
-    r, g, b = Color.hsvToRgb(hue, 255, 255)
-    -- print("HSV",hue,255,255)
-    -- print("RGB",r,g,b)
-    strip:setRGB(r, g, b)
+	-- in morning and day we use full spectre
+	if time >= MODE_MORNING then
+		s = 255
+		v = 127
+	elseif time >= MODE_DAY then
+    	s = 127
+		v = 255
+	end
+
+
+	if time >= MODE_EVENING then
+		s = 255
+		v = 127
+	end
+
+	if time >= MODE_NIGHT then
+		s = 255
+		v = 63
+	end
+
     hue = hue + 1
+	-- in evening and night there is no  blue and minimal green
+	if time >= MODE_EVENING or time >= MODE_NIGHT then
+		if  hue > 21 then
+			hue = 0
+		end
+	end	
     if hue >= 255 then
         hue = 0
     end
+
+    r, g, b = Color.hsvToRgb(hue, s, v)
+    -- print("HSV",hue,255,255)
+    -- print("RGB",r,g,b)
+    strip:setRGB(r, g, b)
+
 end
 
 

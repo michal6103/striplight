@@ -4,10 +4,16 @@ CONFIG = {
 	PASSWORD = "",
 
 	-- GetTime server
-	TIME_HOST = "127.0.0.1"
+	TIME_HOST = "127.0.0.1",
 
 	-- LED Strip settings
     PWM_PIN1 = 1,
     PWM_PIN2 = 2,
-    PWM_PIN3 = 3
+    PWM_PIN3 = 3,
+
+	-- Mode sswitching hours
+	MODE_MORNING = 6,	-- Candle light
+	MODE_DAY = 7,		-- Color rotation full value
+	MODE_EVENING = 20,	-- Candle light without blue and minimum green
+	MODE_NIGHT = 23		-- Turned off
 }
