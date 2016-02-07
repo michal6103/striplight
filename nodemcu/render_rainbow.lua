@@ -19,12 +19,12 @@ function render_rainbow.nextFrame()
 	local data_table = {}
 	local r, g, b
 
-	for led = 1, #render_rainbow.led_count do
-		r, g, b = Color.hsvToRgb(led+render_rainbow.hue_state, s, v)
+	for led = 1, render_rainbow.led_count do
+		r, g, b = Color.hsvToRgb(led+render_rainbow.hue_state, render_rainbow.s, render_rainbow.v)
+		print(r, g, b)
 		-- data for every LED in BGR format
-		data_table[i] = b .. g .. r
+		data_table[led] = b .. g .. r
 	end
 
-
-	return table.concat(render_rainbow.data_table)
+	return table.concat(data_table)
 end

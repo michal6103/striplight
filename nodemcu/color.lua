@@ -1,7 +1,8 @@
 Color = {}
+
 -- TODO change input and outputs to 10 bits
 function Color.hsvToRgb(h, s, v)
-  local r, g, b
+  --local r, g, b
 
   local i = h / 43;
   local f = (h - (i * 43)) * 6;
@@ -9,7 +10,8 @@ function Color.hsvToRgb(h, s, v)
   local q = (v * (255 - ((f * s) / 255))) / 255;
   local t = (v * (255 - (((255 - f) * s) / 255))) / 255;
 
-  i = i % 6
+  i = math.floor(i) % 6
+  print(i)
 
   if i == 0 then r, g, b = v, t, p
   elseif i == 1 then r, g, b = q, v, p
