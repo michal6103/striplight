@@ -39,7 +39,7 @@ function strip_pwm:getRGB()
     return r, g, b
 end
 
-function strip_wpm.write(data)
+function strip_pwm.write(data)
 	strip_pwm:setRGB(data)
 end
 
