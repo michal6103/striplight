@@ -1,10 +1,18 @@
-require "strip"
+
+require "nodemcu_dummy"
+
+require "network"
+require "time"
+require "strip_pwm"
+require "strip_apa102"
 require "config"
 require "color"
+require "render"
+require "render_rainbow"
 
 STA_GOTIP = 5
 TIMER_NETWORK = 0   -- Timer used for network event
-TIMER_COLOR = 1     -- Timer used for color change
+TIMER_RENDER = 1     -- Timer used for color change
 TIMER_TIME = 2      -- Timer used for gettin time regularely
 
 MODE_MORNING = CONFIG.MODE_MORNING
@@ -12,52 +20,12 @@ MODE_DAY = CONFIG.MODE_DAY
 MODE_EVENING = CONFIG.MODE_EVENING
 MODE_NIGHT = CONFIG.MODE_NIGHT
 
-function parseTime(pl)
-    return string.match(pl, "%c(%d+):")
-end
 
-function getTimeCallback()
-    --http://188.226.243.203:5000/getTime
-    if wifi.sta.status() == STA_GOTIP then
-        conn=net.createConnection(net.TCP, false) 
-        conn:on("receive",
-            function(conn, pl)
-                time = parseTime(pl)
-                if time then
-                    print("Setting time to: " .. tostring(time))
-                    print("getTime every 10 minutes")
-                    -- getTimeCallback every 10 minutes
-                    tmr.alarm(TIMER_TIME, 600000, 1, getTimeCallback)
-                end
-            end)
-        conn:connect(5000,CONFIG.TIME_HOST)
-        print("Getting time")
-        conn:send("GET /getTime HTTP/1.1\r\nHost: " .. CONFIG.TIME_HOST
-		.. "\r\n" .."Connection: keep-alive\r\nAccept: */*\r\n\r\n")
-    else
-        -- start checking network every second
-        tmr.alarm(TIMER_NETWORK, 1000, 1, checkNetCallback)
-    end
-end
+-- TODO; create brightnessloop event
 
-function checkNetCallback()
-    print("Checking IP")
-    if wifi.sta.status() == STA_GOTIP  then
-        print("Got IP: " .. wifi.sta.getip())
-        tmr.stop(TIMER_NETWORK)
-        -- getTime every 10 seconds
-        print("getTime every 10 seconds")
-        tmr.alarm(TIMER_TIME, 10000, 1, getTimeCallback)
-    end
-end
-
-function initWifi()
-    print("Connecting to Wi-Fi: " .. CONFIG.SSID)
-    wifi.setmode(wifi.STATION)
-    wifi.sta.config(CONFIG.SSID,CONFIG.PASSWORD)
-end
 
 function rotateColorsCallback()
+	-- TODO: Replace this function by renderer module
     if hue == nil then
         hue = 0
     end
@@ -95,14 +63,18 @@ function rotateColorsCallback()
     hue = hue + 1
 end
 
+network = Network
+network.initWifi(CONFIG.SSID, CONFIG.PASSWORD)
+-- Sets up timer event trying to connect to wifi
+network.connectLoop()
 
-initWifi()
--- check if connected to network every second
-tmr.alarm(TIMER_NETWORK, 1000, 1, checkNetCallback)
+time = Time
+time.startGetTimeLoop()
 
-strip = Strip;
-strip:start()
--- rotate HSV color every second
-tmr.alarm(TIMER_COLOR, 1000, 1, rotateColorsCallback)
+strip = strip_apa102;
+strip:init()
+-- Start renderer
+render = render_rainbow
+tmr.alarm(TIMER_RENDER, 1000, 1, render.nextFrame)
 
 
