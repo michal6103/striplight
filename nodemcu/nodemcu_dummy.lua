@@ -4,7 +4,6 @@ gpio = {}
 function gpio.mode(a, b)
 end
 
-
 function gpio.write(a, b)
 end
 
@@ -43,3 +42,28 @@ end
 function wifi.sta.getip()
 	return "test_ip"
 end
+
+
+-- dummy connection module
+connection = {}
+function connection:on(event, callback)
+	-- TODO implement callback call
+end
+
+function connection:connect(port, host)
+end
+
+function connection:send(payload)
+end
+
+
+-- dummy module to simulate net
+net = {
+	TCP = 0
+}
+
+function net.createConnection(type, b)
+	return connection
+end
+
+
