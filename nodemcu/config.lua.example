@@ -6,6 +6,9 @@ CONFIG = {
 	-- GetTime server
 	TIME_HOST = "127.0.0.1",
 
+	--LED strip type: PWM, APA102
+	STRIP_TYPE = "APA102",
+
 	-- LED Strip settings
     PWM_PIN1 = 1,
     PWM_PIN2 = 2,
