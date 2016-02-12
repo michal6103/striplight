@@ -11,7 +11,6 @@ function Color.hsvToRgb(h, s, v)
   local t = (v * (255 - (((255 - f) * s) / 255))) / 255;
 
   i = math.floor(i) % 6
-  print(i)
 
   if i == 0 then r, g, b = v, t, p
   elseif i == 1 then r, g, b = q, v, p

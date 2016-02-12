@@ -72,7 +72,7 @@ time = Time
 time.startGetTimeLoop()
 
 strip = strip_apa102;
-strip:init()
+strip.init()
 -- Start renderer
 render = render_rainbow
 tmr.alarm(TIMER_RENDER, 1000, 1, render.nextFrame)

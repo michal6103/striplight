@@ -55,9 +55,9 @@ function strip_apa102.write(brightness, data)
 
     output_buffer = table.concat(data_table)
 
-    for i=1,#output_buffer do
-        print(string.format('%02X', output_buffer:byte(i)))
-    end
+    -- for i=1,#output_buffer do
+    --     print(string.format('%02X', output_buffer:byte(i)))
+    -- end
 
     return spi.send(strip_apa102.SPI_ID, output_buffer)
 end
