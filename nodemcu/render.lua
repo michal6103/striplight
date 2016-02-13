@@ -3,14 +3,18 @@
 
 
 render = {
-	led_count = 1
+	led_count = 1,
+	strip = nil
 }
 
-function render:init(led_count, rendered_function)
-	self.led_count = led_count
-	render.nextFrame = render_function
+function render.init(strip, led_count)
+	render.led_count = led_count
+    print("LED count: " .. render.led_count)
+    render.strip = strip
 end
 
 function render.nextFrame()
+	-- Function generates data that will be sent
+	return "RGB"
 end
 

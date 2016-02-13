@@ -1,5 +1,3 @@
-require "config"
-
 Network = {}
 
 function Network.initWifi(ssid, password)
@@ -10,7 +8,7 @@ end
 
 function Network.connectLoop()
 	-- check if connected to network every second
-	tmr.alarm(TIMER_NETWORK, 1000, 1, Network.checkNetCallback)
+	tmr.alarm(TIMER_NETWORK, 5000, 1, Network.checkNetCallback)
 end
 
 function Network.checkNetCallback()
