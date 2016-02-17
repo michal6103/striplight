@@ -3,11 +3,13 @@ Time = {
 }
 
 
-function Time.getTimeLoop(host)
+function Time.init(host)
     Time.time_host = host
-    -- getTime every 10 seconds
-    print("getTime every 10 seconds")
-    tmr.alarm(TIMER_TIME, 10000, 1, Time.getTimeCallback)
+end
+
+function Time.startLoop(timer_id)
+    print("Getting time every 10 seconds")
+    tmr.alarm(timer_id, 10000, 1, Time.getTimeCallback)
 end
 
 function Time.parseTime(pl)
@@ -22,7 +24,7 @@ function Time.onReceive(conn, pl)
 end
 
 function Time.onConnection(conn, c)
-    print("Sending request to: " .. Time.time_host)    
+    print("Sending request to: " .. Time.time_host)
     conn:send("GET /getTime HTTP/1.1\r\nHost: " .. Time.time_host
     .. "\r\n" .."Connection: keep-alive\r\nAccept: */*\r\n\r\n")
 end
@@ -36,7 +38,7 @@ end
 function Time.getTimeCallback()
     -- http://188.226.243.203:5000/getTime
     if wifi.sta.status() == STA_GOTIP then
-        conn=net.createConnection(net.TCP, 0) 
+        conn=net.createConnection(net.TCP, 0)
         conn:on("receive", Time.onReceive)
         conn:connect(5000,Time.time_hosts)
         conn:on("connection", Time.onConnection)

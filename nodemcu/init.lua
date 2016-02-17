@@ -23,16 +23,17 @@ network = Network
 network.initWifi(CONFIG.SSID, CONFIG.PASSWORD)
 network.connectLoop()
 
--- Setup timer to get time over internet 
+-- Setup timer to get time over internet
 time = Time
-time.getTimeLoop(CONFIG.TIME_HOST)
+time.init(CONFIG.TIME_HOST)
+time.startLoop(TIMER_TIME)
 
--- Setup LED strip 
+-- Setup LED strip
 strip = strip_apa102;
 strip.init()
 
 -- Start renderer
 render = render_rainbow
 render.init(strip, CONFIG.LED_COUNT)
-tmr.alarm(TIMER_RENDER, 2000, 1, render.nextFrame)
+render.startLoop(TIMER_RENDER)
 -- tmr.stop(TIMER_RENDER)

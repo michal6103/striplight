@@ -17,6 +17,10 @@ function render_rainbow.init(strip,led_count)
     render_rainbow.strip = strip
 end
 
+function render_rainbow.startLoop(timer_id)
+	tmr.alarm(timer_id, 2000, 1, render.nextFrame)
+end
+
 function render_rainbow.nextFrame()
 	local data_table = {}
 	local r, g, b
