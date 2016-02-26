@@ -14,6 +14,7 @@ LED strip ambient light.
 - IKEA Kvartal Curtain Track System
 [Kvartal](https://goo.gl/photos/C8Dv6Komr3QxJnL49)
 
+[DIY Ambient Light](http://i.imgur.com/OP6Xf9U.gifv)
 Full video: https://www.youtube.com/watch?v=k3UOLiqp3RE
 
 
