@@ -3,23 +3,19 @@ LED strip ambient light.
 
 ##Required Hardware:
 - NodeMCU
+- Bi-Directional Logic Level Converter
+- APA102 LED strip
+- 5V Power supply for LED strip
+- IKEA Kvartal Curtain Track System
+
+##Images
+[DIY Ambient Light](http://imgur.com/OP6Xf9U?)
 [NodeMCU](https://goo.gl/photos/71vkDuYzjjEuFG9MA)
 [NodeMCU pin connection](https://goo.gl/photos/71vkDuYzjjEuFG9MA)
-
-- Bi-Directional Logic Level Converter
 [Logic Level Converter](https://goo.gl/photos/dSgVwUJYJmQb7kmr9)
-
-- APA102 LED strip
 [APA102](https://goo.gl/photos/VtbAaQpkpMPBjVHz8)
-
-- 5V Power supply for LED strip
 [Power Supplies](https://goo.gl/photos/KLPHdyhX79gpw6Yc9)
-
-- IKEA Kvartal Curtain Track System
 [Kvartal](https://goo.gl/photos/C8Dv6Komr3QxJnL49)
-
-
-[DIY Ambient Light](http://imgur.com/OP6Xf9U?)
 
 Full video: https://www.youtube.com/watch?v=k3UOLiqp3RE
 
