@@ -12,9 +12,9 @@ LED strip ambient light.
 - 5V Power supply for LED strip
 [Power Supplies](https://goo.gl/photos/KLPHdyhX79gpw6Yc9)
 - IKEA Kvartal Curtain Track System
-[Kvartal](https://goo.gl/photos/C8Dv6Komr3QxJnL49)
+![Kvartal](https://goo.gl/photos/C8Dv6Komr3QxJnL49)
 
-[DIY Ambient Light](http://i.imgur.com/OP6Xf9U.gifv)
+![DIY Ambient Light](http://i.imgur.com/OP6Xf9U.gifv)
 Full video: https://www.youtube.com/watch?v=k3UOLiqp3RE
 
 
