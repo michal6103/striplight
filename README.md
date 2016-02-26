@@ -19,7 +19,8 @@ LED strip ambient light.
 [Kvartal](https://goo.gl/photos/C8Dv6Komr3QxJnL49)
 
 
-![DIY Ambient Light](http://imgur.com/download/OP6Xf9U)
+[DIY Ambient Light](http://imgur.com/download/OP6Xf9U)
+
 Full video: https://www.youtube.com/watch?v=k3UOLiqp3RE
 
 
